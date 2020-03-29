@@ -4,6 +4,6 @@ a simple PASCAL interpreter in Python
 
 inspired by Peter Norvig's Lisp interpreter and Ruslan Spivak's Pascal interpreter
 
-input => Tokenizer => tokens => Parser => abstract syntax tree => SemanticAnalyzer => Interpreter => output
+input => Tokenizer(lexer, lexical analysis) => tokens => Parser (syntax analysis) => abstract syntax tree => SemanticAnalyzer => Interpreter => output
 
-let's run `python repl.py` and give it a try
+`python repl.py` 
