@@ -102,25 +102,6 @@ class Env(dict):
 global_env = standard_env()
 
 
-################ Interaction: A REPL
-
-def repl(prompt='lis.py> '):
-    "A prompt-read-eval-print loop."
-    while True:
-        program = input(prompt)
-
-        val = eval(parse(str(program)))
-        print(val)
-        if val is not None:
-            print(lispstr(val))
-
-
-def lispstr(exp):
-    "Convert a Python object back into a Lisp-readable string."
-    if isinstance(exp, List):
-        return '(' + ' '.join(map(lispstr, exp)) + ')'
-    else:
-        return str(exp)
 
 
 ################ Procedures
@@ -163,6 +144,27 @@ def eval(x, env=global_env):
         proc = eval(x[0], env)
         args = [eval(exp, env) for exp in x[1:]]
         return proc(*args)
+
+
+
+
+def repl(prompt='lis.py> '):
+    "A prompt-read-eval-print loop."
+    while True:
+        program = input(prompt)
+
+        val = eval(parse(str(program)))
+        print(val)
+        if val is not None:
+            print(lispstr(val))
+
+
+def lispstr(exp):
+    "Convert a Python object back into a Lisp-readable string."
+    if isinstance(exp, List):
+        return '(' + ' '.join(map(lispstr, exp)) + ')'
+    else:
+        return str(exp)
 
 
 if __name__ == "__main__":
